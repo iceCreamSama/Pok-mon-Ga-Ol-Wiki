@@ -1,0 +1,75 @@
+<!--pages/order/order.wxml-->
+<view class="page">
+  <view class="select-aria">
+    <view style="display: flex; ">
+      <label style="width: 10em;">弹次选择</label>
+      <view style="display: flex; flex-wrap: wrap;">
+        <view wx:for="{{seasonAllContent}}" wx:key="index" bind:tap="bindSeasonChange" data-season="{{item.season}}" style="margin: 2px 5px 2px 5px; background-color: {{item.season == selectedSeason ? 'lightgray': 'white'}}">{{item.season}} </view>
+      </view>
+    </view>
+    <view class="mode-container">
+      <label style="width: 3em;">模式</label>
+      <view class="mode-button" bind:tap="handleDetail" data-detail="0" style="background-color: {{Detail == 0 ? 'lightgray':'white'}}">简略</view>
+      <view class="mode-button" bind:tap="handleDetail" data-detail="1" style="background-color: {{Detail == 0 ? 'white':'lightgray'}}">详细</view>
+      <view class="mode-button" bind:tap="bindClear">清空</view>
+    </view>
+    <view class="star-container">
+        <label class="weui-label">一星</label>
+      <view class="button-container">
+        <view wx:for="{{seasonContent.oneStarList}}" wx:key="index" class="select-btn" style="background-color:  {{item.active ? 'lightgray': 'white'}}" bindtap="handleButtonClick" data-uid="{{item.uid}}">
+          <image src="{{item.pmAvatar}}" class="btn_icon" style="height: 30px; width: 30px;" mode="aspectFit"></image>{{item.pmName}}
+        </view>
+      </view>
+    </view>
+    <view class="star-container">
+        <label class="weui-label">二星</label>
+      <view class="button-container">
+        <view wx:for="{{seasonContent.twoStarList}}" wx:key="index" class="select-btn" style="background-color: {{item.active ? 'lightgray': 'white'}}" bindtap="handleButtonClick" data-uid="{{item.uid}}">
+          <image src="{{item.pmAvatar}}" class="btn_icon" style="height: 30px; width: 30px;" mode="aspectFit"></image>{{item.pmName}}
+        </view>
+      </view>
+    </view>
+    <view class="star-container">
+        <label class="weui-label">三星</label>
+      <view class="button-container">
+        <view wx:for="{{seasonContent.threeStarList}}" wx:key="index" class="select-btn" style="background-color: {{item.active ? 'lightgray': 'white'}}" bindtap="handleButtonClick" data-uid="{{item.uid}}">
+          <image src="{{item.pmAvatar}}" class="btn_icon" style="height: 30px; width: 30px;" mode="aspectFit"></image>{{item.pmName}}
+        </view>
+      </view>
+    </view>
+    <view class="star-container">
+        <label class="weui-label">四星</label>
+      <view class="button-container">
+        <view wx:for="{{seasonContent.fourStarList}}" wx:key="index" class="select-btn" style="background-color: {{item.active ? 'lightgray': 'white'}}" bindtap="handleButtonClick" data-uid="{{item.uid}}">
+          <image src="{{item.pmAvatar}}" class="btn_icon" style="height: 30px; width: 30px;" mode="aspectFit"></image>{{item.pmName}}
+        </view>
+      </view>
+    </view>
+    <view class="star-container">
+        <label class="weui-label">五星</label>
+      <view class="button-container">
+        <view wx:for="{{seasonContent.fiveStarList}}" wx:key="index" class="select-btn" style="background-color: {{item.active ? 'lightgray': 'white'}}" bindtap="handleButtonClick" data-uid="{{item.uid}}">
+          <image src="{{item.pmAvatar}}" class="btn_icon" style="height: 30px; width: 30px;" mode="aspectFit"></image>{{item.pmName}}
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="display-aria">
+    <label class="weui-label" style="width: 2em;">卡序</label>
+    <view class="display-container">
+      <view class="display-column">
+        <label class="display-label"> </label>
+        <block wx:for="{{labels}}" wx:key="index">
+          <label class="display-label">{{item}}</label>
+        </block>
+      </view>
+      <view wx:for="{{seasonContent.orderList}}" wx:key="index" class="display-column">
+        <label>{{item.orderName}}</label>
+        <view class="{{Detail == 1? 'detail-btn':'display-btn'}}" wx:for="{{item.orderList}}" wx:key="index" style="background-color: {{item.color}}; opacity: {{item.active ? '1' : '0.2'}};" bindtap="handleButtonClick" data-uid="{{item.uid}}">
+          <image class="display-image" src="{{item.pmAvatar}}"  mode="aspectFit"></image>
+          <block wx:if="{{Detail == 1}}">{{item.star}}-{{item.pmName}}</block>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

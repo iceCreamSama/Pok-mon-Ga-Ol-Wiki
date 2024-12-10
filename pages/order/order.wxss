@@ -1,0 +1,82 @@
+/* pages/order/order.wxss */
+
+.star-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  flex-wrap: nowrap;
+  font-size: 15px;
+}
+
+.weui-cell__hd {  
+  display: flex;
+}  
+  
+.button-container {  
+  display: flex;  
+  flex-direction: row;  
+  flex-wrap: wrap;
+}
+
+.select-btn{
+  align-items: center; /* 让子元素垂直居中 */
+  height: 35px;
+  font-size: 15px;
+  padding-right: 5px;
+  padding-left: 5px;
+  margin-left: 10px;
+  margin-right: 0px;
+  overflow: visible;
+}
+
+.display-container{
+  display: flex;
+  flex-direction: row;
+  overflow-x: scroll;
+  white-space: nowrap;
+}
+
+.display-column{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.display-label{
+  height: 40px;
+  align-items: center;
+}
+
+.display-btn{
+  align-items: center;
+  width: 45px;
+  height: 40px;
+}
+
+.detail-btn{
+  align-items: center;
+  width: 130px;
+  height: 40px;
+  font-size: 15px;
+  padding: 0px 0px 0px 0px;
+  overflow: visible;
+}
+
+.weui-label{
+  width: 11em;
+}
+
+.mode-container{
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 15px;
+}
+
+.mode-button{
+  margin: 5px 5px 5px 5px;
+}
+
+.display-image {  
+  width: 35px;
+  height: 35px; 
+}

@@ -1,0 +1,53 @@
+/* pages/wiki/wiki.wxss */
+.page{
+  font-size: 15px;
+}
+
+.selectAria{
+  display: flex;
+}
+
+.selectSections{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.viewButton{
+  padding: 0px 5px 0px 5px
+}
+
+.displayAria{
+  display: flex;
+  flex-direction: column;
+  font-size: 13px;
+}
+
+.displayList{
+  display: flex;
+  border: 1px solid lightblue;
+}
+
+.displayItem{
+  flex: 1;
+}
+
+.inactive{
+  display: none;
+}
+
+.blue{
+  background-color: lightblue;
+}
+
+.color{
+  background-color: lightcoral;
+}
+
+.fixedAria{
+  border-radius: 0 !important;
+  position: fixed !important;
+  bottom: 0rpx;
+  left: 140rpx;
+  border: 1px solid black;
+  font-size: 18px;
+}

@@ -1,0 +1,14 @@
+<!--index.wxml-->
+<view class="container">
+  <swiper indicator-dots="true" autoplay="true" interval="5000">
+    <swiper-item>
+      <image src="/images/post/post-1@text.jpg" />
+    </swiper-item>
+    <swiper-item>
+      <image src="/images/post/post-2@text.jpg" />
+    </swiper-item>
+    <swiper-item>
+      <image src="/images/post/post-3@text.jpg" />
+    </swiper-item>
+  </swiper>
+</view>

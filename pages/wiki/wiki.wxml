@@ -1,0 +1,163 @@
+<!--pages/wiki/wiki.wxml-->
+<view class="page">
+  <view class="selectAria">
+    <view style="width: 5em;">内容选择：</view>
+    <view class="selectSections">
+      <view class="viewButton" style="background-color: {{contentSwitch == 'card'? 'lightgray':'white'}};" bind:tap="handleContentSwitch" data-content="card">卡牌</view>
+      <view class="viewButton" style="background-color: {{contentSwitch == 'move'? 'lightgray':'white'}};" bind:tap="handleContentSwitch" data-content="move">招式</view>
+    </view>
+  </view>
+  <!-- 卡牌展示部分 -->
+  <view wx:if="{{contentSwitch == 'card'}}">
+    <view class="selectAria">
+      <view style="width: 9em;">列表切换：</view>
+      <view class="selectSections">
+        <view class="viewButton" wx:for="{{cardInfoArray}}" wx:key="index" style="background-color: {{cardInfo == item? 'lightgray':'white'}};" bind:tap="handleCardInfoSwitch" data-cardInfo="{{item}}">{{item}}</view>
+      </view>
+    </view>
+    <view class="selectAria">
+      <view style="width: 8em;">弹次：</view>
+      <view class="selectSections">
+        <view class="viewButton" wx:for="{{seasonArray}}" wx:key="index" style="background-color: {{season == item? 'lightgray':'white'}};" bind:tap="handleSeasonSwitch" data-season="{{item}}">{{item}}</view>
+      </view>
+    </view>
+    <view class="selectAria">
+      <view>星级：</view>
+      <view class="selectSections">
+        <view class="viewButton" wx:for="{{starArray}}" wx:key="index" style="background-color: {{star == item? 'lightgray':'white'}};" bind:tap="handleStarSwitch" data-star="{{item}}">{{item}}</view>
+      </view>
+    </view>
+    <view class="selectAria">
+      <view style="width: 6em;">属性：</view>
+      <view class="selectSections">
+        <view class="viewButton" wx:for="{{typeArray}}" wx:key="index" style="background-color: {{type == item? 'lightgray':'white'}};" bind:tap="handleTypeSwitch" data-type="{{item}}">{{item}}</view>
+      </view>
+    </view>
+    <view class="selectAria">
+      <view style="width: 7em;">战斗系统：</view>
+      <view class="selectSections">
+        <view class="viewButton" wx:for="{{systemArray}}" wx:key="index" style="background-color: {{system == item? 'lightgray':'white'}};" bind:tap="handleSystemSwitch" data-system="{{item}}">{{item}}</view>
+      </view>
+    </view>
+    <view class="selectAria">
+      <view>操作：</view>
+      <view class="selectSections">
+        <view class="viewButton" bind:tap="handleOnlySelected">只看选中</view>
+        <view class="viewButton" bind:tap="hundleReset">重置筛选</view>
+        <view class="viewButton" bind:tap="hundleResetAll">全部重置</view>
+      </view>
+    </view>
+    <view style="margin: 10px 5px 10px 5px;" bind:tap="hundleDescAlert">
+    <image src='../../images/pm/446.png' style="width: 40px; height: 40px;"></image>
+    卡牌信息*
+    </view>
+    <view class="selectAria" style="margin: 10px 5px 10px 5px;">
+      <view class="selectSections">
+        <view style="width: 5em;">显示切换：</view>
+        <view class="viewButton" wx:for="{{displayArray}}" wx:key="index" style="background-color: {{display == item? 'lightgreen':'white'}};" bind:tap="handleDisplaySwitch" data-display="{{item}}">{{item}}</view>
+      </view>
+    </view>
+    <view class="selectAria fixedAria" style="margin: 10px 5px 10px 5px;">
+      <view class="selectSections">
+        <view class="viewButton" wx:for="{{displayArray}}" wx:key="index" style="background-color: {{display == item? 'lightgreen':'white'}};" bind:tap="handleDisplaySwitch" data-display="{{item}}">{{item}}</view>
+      </view>
+    </view>
+    <view class="displayAria">
+      <view class="displayList" wx:if="{{display == '基础信息'}}" style="background-color: lightgray;">
+        <view class="displayItem">名称</view>
+        <view class="displayItem">弹次</view>
+        <view class="displayItem">ID</view>
+        <view class="displayItem">星级</view>
+        <view class="displayItem">能量</view>
+        <view class="displayItem">属性</view>
+        <view class="displayItem">属性</view>
+      </view>
+      <view class="displayList {{item.color?'color':''}}  {{index%2==1?'blue':''}} {{item.active?'':'inactive'}}" wx:for="{{cardAllInfo}}" wx:key="index" wx:if="{{display == '基础信息'}}">
+        <view class="displayItem" bind:tap="handleColorTap" data-id="{{item.id}}">{{item.name}}</view>
+        <view class="displayItem" bind:tap="handleColorTap" data-id="{{item.id}}">{{item.season}}</view>
+        <view class="displayItem" bind:tap="handleColorTap" data-id="{{item.id}}">{{item.cardID}}</view>
+        <view class="displayItem" bind:tap="handleColorTap" data-id="{{item.id}}">{{item.star}}</view>
+        <view class="displayItem" bind:tap="handleColorTap" data-id="{{item.id}}">{{item.eng}}</view>
+        <view class="displayItem" bind:tap="handleColorTap" data-id="{{item.id}}">{{item.type1}}</view>
+        <view class="displayItem" bind:tap="handleColorTap" data-id="{{item.id}}">{{item.type2}}</view>
+      </view>
+      <view class="displayList" wx:if="{{display == '能力值'}}" style="background-color: lightgray;">
+        <view class="displayItem">名称</view>
+        <view class="displayItem">体力</view>
+        <view class="displayItem">攻击</view>
+        <view class="displayItem">特攻</view>
+        <view class="displayItem">防御</view>
+        <view class="displayItem">特防</view>
+        <view class="displayItem">速度</view>
+        <view class="displayItem">系统</view>
+      </view>
+      <view class="displayList {{item.color?'color':''}}  {{index%2==1?'blue':''}} {{item.active?'':'inactive'}}" wx:for="{{cardAllInfo}}" wx:key="index" wx:if="{{display == '能力值'}}">
+        <view class="displayItem" bind:tap="handleColorTap" data-id="{{item.id}}">{{item.name}}</view>
+        <view class="displayItem" bind:tap="handleColorTap" data-id="{{item.id}}">{{item.hp}}</view>
+        <view class="displayItem" bind:tap="handleColorTap" data-id="{{item.id}}">{{item.atk}}</view>
+        <view class="displayItem" bind:tap="handleColorTap" data-id="{{item.id}}">{{item.spatk}}</view>
+        <view class="displayItem" bind:tap="handleColorTap" data-id="{{item.id}}">{{item.def}}</view>
+        <view class="displayItem" bind:tap="handleColorTap" data-id="{{item.id}}">{{item.spdef}}</view>
+        <view class="displayItem" bind:tap="handleColorTap" data-id="{{item.id}}">{{item.spd}}</view>
+        <view class="displayItem" bind:tap="handleColorTap" data-id="{{item.id}}">{{item.spsys}}</view>
+      </view>
+      <view class="displayList" wx:if="{{display == '招式信息'}}" style="background-color: lightgray;">
+        <view class="displayItem">名称</view>
+        <view class="displayItem">招式</view>
+        <view class="displayItem">属性</view>
+        <view class="displayItem">威力</view>
+        <view class="displayItem">准确率</view>
+        <view class="displayItem">招式</view>
+        <view class="displayItem">属性</view>
+        <view class="displayItem">威力</view>
+        <view class="displayItem">准确率</view>
+      </view>
+      <view class="displayList {{item.color?'color':''}}  {{index%2==1?'blue':''}} {{item.active?'':'inactive'}}" wx:for="{{cardAllInfo}}" wx:key="index" wx:if="{{display == '招式信息'}}">
+        <view class="displayItem" bind:tap="handleColorTap" data-id="{{item.id}}">{{item.name}}</view>
+        <view class="displayItem" bind:tap="handleColorTap" data-id="{{item.id}}">{{item.moves[0].name}}</view>
+        <view class="displayItem" bind:tap="handleColorTap" data-id="{{item.id}}">{{item.moves[0].type}}</view>
+        <view class="displayItem" bind:tap="handleColorTap" data-id="{{item.id}}">{{item.moves[0].pow}}</view>
+        <view class="displayItem" bind:tap="handleColorTap" data-id="{{item.id}}">{{item.moves[0].acc}}</view>
+        <view class="displayItem" bind:tap="handleColorTap" data-id="{{item.id}}">{{item.moves[1].name}}</view>
+        <view class="displayItem" bind:tap="handleColorTap" data-id="{{item.id}}">{{item.moves[1].type}}</view>
+        <view class="displayItem" bind:tap="handleColorTap" data-id="{{item.id}}">{{item.moves[1].pow}}</view>
+        <view class="displayItem" bind:tap="handleColorTap" data-id="{{item.id}}">{{item.moves[1].acc}}</view>
+      </view>
+    </view>
+  </view>
+  <!-- 招式展示部分 -->
+  <view wx:if="{{contentSwitch == 'move'}}">
+    <view class="selectAria">
+      <view style="width: 6em;">属性：</view>
+      <view class="selectSections">
+        <view class="viewButton" wx:for="{{typeArray}}" wx:key="index" style="background-color: {{moveType == item? 'lightgray':'white'}};" bind:tap="handleMoveTypeSwitch" data-type="{{item}}">{{item}}</view>
+      </view>
+    </view>
+    <view class="selectAria">
+      <view style="width: 5em;">招式类别：</view>
+      <view class="selectSections">
+        <view class="viewButton" wx:for="{{zMoveArray}}" wx:key="index" style="background-color: {{zMove == item? 'lightgray':'white'}};" bind:tap="handleZMoveSwitch" data-zmove="{{item}}">{{item}}</view>
+      </view>
+    </view>
+    <view style="margin: 10px 5px 10px 5px;" bind:tap="hundleDescAlert">
+    <image src='../../images/pm/808.png' style="width: 40px; height: 40px;"></image>
+    招式信息*
+    </view>
+    <view class="displayAria">
+      <view class="displayList" style="background-color: lightgray;">
+        <view class="displayItem">名称</view>
+        <view class="displayItem">属性</view>
+        <view class="displayItem">威力</view>
+        <view class="displayItem">准确率</view>
+        <view class="displayItem">Z招式</view>
+      </view>
+      <view class="displayList {{index%2==1?'blue':''}} {{item.active?'':'inactive'}}" wx:for="{{moveAllInfo}}" wx:key="index">
+        <view class="displayItem" data-id="{{item.id}}">{{item.name}}</view>
+        <view class="displayItem" data-id="{{item.id}}">{{item.type}}</view>
+        <view class="displayItem" data-id="{{item.id}}">{{item.power}}</view>
+        <view class="displayItem" data-id="{{item.id}}">{{item.acc}}</view>
+        <view class="displayItem" data-id="{{item.id}}">{{item.zmove?'○':'×'}}</view>
+      </view>
+    </view>
+  </view>
+</view>
